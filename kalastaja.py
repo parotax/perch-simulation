@@ -42,7 +42,6 @@ class Kalastaja:
             for kala in parvi.kalat:
                 x = kala.x + parvi.x
                 y = kala.y + parvi.y
-                print(sqrt((x - self.x)**2 + (y - self.y)**2))
                 if sqrt((x - self.x)**2 + (y - self.y)**2) < 2500:
                     self.saalista += 1
                     parvi.tuhoa(kala.id)
