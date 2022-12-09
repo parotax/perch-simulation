@@ -2,16 +2,16 @@ import random
 from math import sin, cos, sqrt
 import settings
 
-jarvi = 500
+jarvi = 400
 
 class Kalastaja:
-    def __init__(self, x, y, vauhti, suunta):
+    def __init__(self, x, y, suunta):
         self.x = x
         self.y = y
-        self.vauhti = vauhti
+        self.vauhti = 100
         self.suunta = suunta
         self.status = "Kairaa"
-        self.kalastanut = 0
+        self.ajastin = 0
         self.paikatX = [self.x]
         self.paikatY = [self.y]
         self.saalista = 0
@@ -36,19 +36,32 @@ class Kalastaja:
         self.status = "Kalastaa"
 
     def kalasta(self):
-        self.kalastanut += 1
+        self.ajastin += 1
 
+        kalaa = False
         for parvi in settings.parvet:
             for kala in parvi.kalat:
                 x = kala.x + parvi.x
                 y = kala.y + parvi.y
-                if sqrt((x - self.x)**2 + (y - self.y)**2) < 2500:
-                    self.saalista += 1
-                    parvi.tuhoa(kala.id)
+                if sqrt((x - self.x)**2 + (y - self.y)**2) < 4:
+                    if random.randint(1, 6) == 1:
+                        self.saalista += 1
+                        parvi.tuhoa(kala.id)
+                        self.ajastin = 0
+                        kalaa = True
+                        break
+            if kalaa: break
 
-        if self.kalastanut > 15:
+        if self.ajastin > 10:
+            self.status = "Liikkuu"
+            self.ajastin = 0
             self.vaihda_paikkaa()
     
     def vaihda_paikkaa(self):
-        self.status = "Liikkuu"
-        self.liiku()
+        self.ajastin += 1
+        if self.ajastin > 2:
+            self.liiku()
+            self.ajastin = 0
+
+    def __str__(self):
+        return f"Kalastaja {self.saalista} kalaa ({self.x}, {self.y})"

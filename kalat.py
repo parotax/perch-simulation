@@ -1,7 +1,7 @@
 from math import cos, sin, pi, sqrt
 import random
 
-jarvi = 500
+jarvi = 400
 
 class Kala:
     id = 1
@@ -14,10 +14,13 @@ class Kala:
     def liikuta(self, dx, dy):
         self.x += dx
         self.y += dy
+    
+    def __str__(self):
+        return f"Kala id {self.id} ({self.x}, {self.y})"
 
 class Parvi:
     id = 0
-    def __init__(self, x, y, vauhti, suunta, r):
+    def __init__(self, x, y, suunta, r):
         self.id = Parvi.id
         Parvi.id += 1
         self.x = x
@@ -25,7 +28,7 @@ class Parvi:
         self.paikatX = [self.x]
         self.paikatY = [self.y]
         self.kalat = []
-        self.vauhti = vauhti
+        self.vauhti = 2
         self.suunta = suunta
         self.r = r
 
@@ -55,6 +58,9 @@ class Parvi:
 
         self.paikatX.append(self.x)
         self.paikatY.append(self.y)
+
+    def __str__(self):
+        return f"Parvi {len(self.kalat)} kalaa ({self.x}, {self.y})"
 
     def tuhoa(self, id):
         for kala in self.kalat:
