@@ -55,3 +55,8 @@ class Parvi:
 
         self.paikatX.append(self.x)
         self.paikatY.append(self.y)
+
+    def tuhoa(self, id):
+        for kala in self.kalat:
+            if kala.id == id:
+                self.kalat.remove(kala)
