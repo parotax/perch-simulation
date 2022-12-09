@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from math import cos, sin
+from math import cos, sin, pi, sqrt
 import random
 
 jarvi = 500
@@ -9,16 +9,28 @@ class Kala:
         self.x = x
         self.y = y
 
+    def liikuta(self, dx, dy):
+        self.x += dx
+        self.y += dy
+
 class Parvi:
-    def __init__(self, x, y, kalat, vauhti, suunta, rad):
+    def __init__(self, x, y, vauhti, suunta, r):
         self.x = x
         self.y = y
         self.paikatX = [self.x]
         self.paikatY = [self.y]
-        self.kalat = kalat
+        self.kalat = []
         self.vauhti = vauhti
         self.suunta = suunta
-        self.rad = rad
+        self.r = r
+
+    def lisaa_kala(self):
+        alpha = 2 * pi * random.random()
+        r = self.r * sqrt(random.random())
+        x = r * cos(alpha) + self.x
+        y = r * sin(alpha) + self.y
+        kala = Kala(x, y)
+        self.kalat.append(kala)
 
     def liiku(self):
         self.suunta += random.uniform(-1.0 , 1.0)
@@ -26,12 +38,15 @@ class Parvi:
         dx = self.vauhti*sin(self.suunta)
         dy = self.vauhti*cos(self.suunta)
 
-        if self.x + dx <= self.rad or self.y + dy <= self.rad or self.x + dx >= jarvi - self.rad or self.y + dy >= jarvi - self.rad:
+        if self.x + dx <= self.r or self.y + dy <= self.r or self.x + dx >= jarvi - self.r or self.y + dy >= jarvi - self.r:
             self.liiku()
             return
 
         self.x += dx
         self.y += dy
+
+        for kala in self.kalat:
+            kala.liikuta(dx, dy)
 
         self.paikatX.append(self.x)
         self.paikatY.append(self.y)
@@ -50,9 +65,9 @@ def piirrareitti(xlista, ylista):
     
     plt.show()
 
-kalat = Parvi(jarvi / 2, jarvi / 2, [], 1, 0, 5)
+kalat = Parvi(jarvi / 2, jarvi / 2, 15, 0, 5)
 
-for i in range(10):
-    kalat.liiku()
-
+for i in range(6):
+    kalat.lisaa_kala()
+kalat.liiku()
 piirrareitti(kalat.paikatX, kalat.paikatY)
