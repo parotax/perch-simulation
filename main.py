@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from kalat import Parvi
 from kalastaja import Kalastaja
 from random import randint
