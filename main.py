@@ -5,7 +5,10 @@ import random
 jarvi = 500
 
 class Kala:
+    id = 1
     def __init__(self, x, y): 
+        self.id = Kala.id
+        Kala.id += 1
         self.x = x
         self.y = y
 
@@ -14,7 +17,10 @@ class Kala:
         self.y += dy
 
 class Parvi:
+    id = 0
     def __init__(self, x, y, vauhti, suunta, r):
+        self.id = Parvi.id
+        Parvi.id += 1
         self.x = x
         self.y = y
         self.paikatX = [self.x]
