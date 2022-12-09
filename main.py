@@ -1,38 +1,41 @@
 import matplotlib.pyplot as plt
 from kalat import Parvi
 from kalastaja import Kalastaja
+from random import randint
 import settings
 
 settings.init()
-jarvi = 500
+jarvi = 400
 
 def piirrareitti(xlista, ylista, title):
     fig, ax = plt.subplots()
     ax.plot(xlista, ylista,'o')
     ax.set(xlabel='x', ylabel='y', title=title)
     ax.grid()
-
    
     ax.set_xlim([0-5, jarvi+5])
     ax.set_ylim([0-5, jarvi+5])
     
     plt.show()
 
-jukka = Kalastaja(25, 25, 1, 0)
-kalat = Parvi(jarvi / 2, jarvi / 2, 15, 0, 5)
+for i in range(15):
 
-settings.parvet.append(kalat)
+    jukka = Kalastaja(25, 25, 0)
 
-kalat.lisaa_kala()
+    for i in range(10):
+        kalat = Parvi(randint(50, jarvi - 50), randint(50, jarvi - 50), 0, 5)
 
-for i in range(6):
-    kalat.liiku()
+        for j in range(15):
+            kalat.lisaa_kala()
 
-    if jukka.status == "Kalastaa": jukka.kalasta()
-    elif jukka.status == "Kairaa": jukka.kairaa()
-    elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
+        settings.parvet.append(kalat)
 
-print(jukka.saalista)
+    for i in range(300):
+        for parvi in settings.parvet:
+            parvi.liiku()
 
-piirrareitti(kalat.paikatX, kalat.paikatY, "Parven reitti")
-piirrareitti(jukka.paikatX, jukka.paikatY, "Jukan reitti")
+        if jukka.status == "Kalastaa": jukka.kalasta()
+        elif jukka.status == "Kairaa": jukka.kairaa()
+        elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
+
+    print(jukka.saalista)
