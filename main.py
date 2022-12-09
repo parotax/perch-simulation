@@ -6,31 +6,29 @@ import settings
 
 settings.init()
 jarvi = 400
+time = 300
+parvienMaara = 10
+kalojaParvessa = 15
+ajaKertoja = 25
 
-def piirrareitti(xlista, ylista, title):
-    fig, ax = plt.subplots()
-    ax.plot(xlista, ylista,'o')
-    ax.set(xlabel='x', ylabel='y', title=title)
-    ax.grid()
-   
-    ax.set_xlim([0-5, jarvi+5])
-    ax.set_ylim([0-5, jarvi+5])
-    
-    plt.show()
+def printResults(results):
+    print(len(results))
 
-for i in range(15):
+result = []
+
+for i in range(ajaKertoja):
 
     jukka = Kalastaja(25, 25, 0)
 
-    for i in range(10):
-        kalat = Parvi(randint(50, jarvi - 50), randint(50, jarvi - 50), 0, 5)
+    for i in range(parvienMaara):
+        kalat = Parvi(randint(20, jarvi - 20), randint(20, jarvi - 20), 0, 5)
 
-        for j in range(15):
+        for j in range(kalojaParvessa):
             kalat.lisaa_kala()
 
         settings.parvet.append(kalat)
 
-    for i in range(300):
+    for i in range(time):
         for parvi in settings.parvet:
             parvi.liiku()
 
@@ -39,3 +37,6 @@ for i in range(15):
         elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
 
     print(jukka.saalista)
+    result.append(jukka.saalista)
+
+printResults(result)
