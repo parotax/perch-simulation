@@ -12,10 +12,12 @@ def init():
 
     parvet = []
     jarvi = 400
-    testTime = 180
-    kalojaParvessa = 125
+    testTime = 120
+    kalojaParvessa = 100
     kalojaJarvessa = 1000 * jarvi / 100
     ajaKertoja = 100
+
+    # Muokattavat parametrit alla
     kalojenNakokentta = 4
     kalastajanKarsivallisyys = 10
     kalojenNopeus = 2
