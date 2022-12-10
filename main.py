@@ -1,36 +1,55 @@
-import matplotlib.pyplot as plt
 from kalat import Parvi
 from kalastaja import Kalastaja
 from random import randint
 import settings
+from math import sqrt
 
 settings.init()
-jarvi = 400
 
-def piirrareitti(xlista, ylista, title):
-    fig, ax = plt.subplots()
-    ax.plot(xlista, ylista,'o')
-    ax.set(xlabel='x', ylabel='y', title=title)
-    ax.grid()
-   
-    ax.set_xlim([0-5, jarvi+5])
-    ax.set_ylim([0-5, jarvi+5])
-    
-    plt.show()
+def printResults(results):
+    print("Parametrit")
+    print(f"Järven koko: {settings.jarvi}")
+    print(f"Pilkkimisen kesto minuutteina: {settings.testTime}")
+    print(f"Kalojen määrä parvessa: {settings.kalojaParvessa}")
+    print(f"Kalojen määrä järvessä: {int(settings.kalojaJarvessa)}")
+    print(f"Kalojen näkökenttä: {settings.kalojenNakokentta}")
+    print(f"Toistoja: {settings.ajaKertoja}")
+    print(f"Pilkkimisaika saman reiän äärellä minuutteina: {settings.kalastajanKarsivallisyys}")
+    print()
 
-for i in range(15):
+    summa = 0
+    nollat = 0
+    keskiarvo = sum(results) / len(results)
+    print(f"keskiarvo on {keskiarvo}")
+    for i in results:
+        summa += (i - keskiarvo)**2
+        if i == 0: nollat += 1
+    keskihajonta = sqrt(summa / len(results))
+    print(f"keskihajonta on {keskihajonta}")
+    print(f"Nollatuloksia: {nollat}")
 
+results = []
+
+for i in range(settings.ajaKertoja):
+
+    kaloja = 0
     jukka = Kalastaja(25, 25, 0)
+    stop = False
 
-    for i in range(10):
-        kalat = Parvi(randint(50, jarvi - 50), randint(50, jarvi - 50), 0, 5)
+    while True:
+        kalat = Parvi(randint(20, settings.jarvi - 20), randint(20, settings.jarvi - 20), 0, 5)
 
-        for j in range(15):
+        for j in range(settings.kalojaParvessa + randint(-75, 75)):
             kalat.lisaa_kala()
+            kaloja += 1
+            if kaloja == settings.kalojaJarvessa: 
+                stop = True
+                break
 
         settings.parvet.append(kalat)
+        if stop: break
 
-    for i in range(300):
+    for i in range(settings.testTime):
         for parvi in settings.parvet:
             parvi.liiku()
 
@@ -38,4 +57,8 @@ for i in range(15):
         elif jukka.status == "Kairaa": jukka.kairaa()
         elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
 
-    print(jukka.saalista)
+    print("Saalista:", jukka.saalista)
+    results.append(jukka.saalista)
+    settings.parvet.clear()
+
+printResults(results)
