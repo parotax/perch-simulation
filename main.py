@@ -37,5 +37,6 @@ for i in range(ajaKertoja):
 
     print(jukka.saalista)
     result.append(jukka.saalista)
+    settings.parvet.clear()
 
 printResults(result)
