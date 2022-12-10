@@ -1,7 +1,6 @@
 from math import cos, sin, pi, sqrt
+import settings
 import random
-
-jarvi = 400
 
 class Kala:
     id = 1
@@ -19,7 +18,7 @@ class Kala:
         return f"Kala id {self.id} ({self.x}, {self.y})"
 
 class Parvi:
-    id = 0
+    id = 1
     def __init__(self, x, y, suunta, r):
         self.id = Parvi.id
         Parvi.id += 1
@@ -46,7 +45,7 @@ class Parvi:
         dx = self.vauhti*sin(self.suunta)
         dy = self.vauhti*cos(self.suunta)
 
-        if self.x + dx <= self.r or self.y + dy <= self.r or self.x + dx >= jarvi - self.r or self.y + dy >= jarvi - self.r:
+        if self.x + dx <= self.r or self.y + dy <= self.r or self.x + dx >= settings.jarvi - self.r or self.y + dy >= settings.jarvi - self.r:
             self.liiku()
             return
 

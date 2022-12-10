@@ -2,9 +2,6 @@ import random
 from math import sin, cos, sqrt
 import settings
 
-jarvi = 400
-kalojenNakokentta = 4
-
 class Kalastaja:
     def __init__(self, x, y, suunta):
         self.x = x
@@ -23,7 +20,7 @@ class Kalastaja:
         dx = self.vauhti*sin(self.suunta)
         dy = self.vauhti*cos(self.suunta)
 
-        if self.x + dx <= 0 or self.y + dy <= 0 or self.x + dx >= jarvi or self.y + dy >= jarvi:
+        if self.x + dx <= 0 or self.y + dy <= 0 or self.x + dx >= settings.jarvi or self.y + dy >= settings.jarvi:
             self.liiku()
             return
 
@@ -41,12 +38,12 @@ class Kalastaja:
 
         kalaa = False
         for parvi in settings.parvet:
-            if abs(parvi.x - self.x) < parvi.r + kalojenNakokentta or abs(parvi.x - self.x) < parvi.r + kalojenNakokentta:
+            if abs(parvi.x - self.x) < parvi.r + settings.kalojenNakokentta or abs(parvi.x - self.x) < parvi.r + settings.kalojenNakokentta:
                 continue
             for kala in parvi.kalat:
                 x = kala.x + parvi.x
                 y = kala.y + parvi.y
-                if sqrt((x - self.x)**2 + (y - self.y)**2) < kalojenNakokentta:
+                if sqrt((x - self.x)**2 + (y - self.y)**2) < settings.kalojenNakokentta:
                     if random.randint(1, 6) == 1:
                         self.saalista += 1
                         parvi.tuhoa(kala.id)
