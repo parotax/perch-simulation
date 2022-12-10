@@ -18,7 +18,5 @@ def init():
     ajaKertoja = 100
     kalastajanKarsivallisyys = 15
     kalojenNopeus = 1.5
-
-    # Muokattavat parametrit alla
-    kalojenNakokentta = 4
+    kalojenNakokentta = 5
     parvenSade = 10
