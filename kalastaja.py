@@ -52,7 +52,7 @@ class Kalastaja:
                         break
             if kalaa: break
 
-        if self.ajastin > 10:
+        if self.ajastin > settings.kalastajanKarsivallisyys:
             self.status = "Liikkuu"
             self.ajastin = 0
             self.vaihda_paikkaa()

@@ -24,9 +24,6 @@ def printResults(results):
     keskihajonta = sqrt(summa / len(results))
     print(f"keskihajonta on {keskihajonta}")
 
-
-
-
 results = []
 
 for i in range(settings.ajaKertoja):

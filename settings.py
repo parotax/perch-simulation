@@ -6,6 +6,7 @@ def init():
     global kalojaJarvessa
     global ajaKertoja
     global kalojenNakokentta
+    global kalastajanKarsivallisyys
     
     parvet = []
     jarvi = 400
@@ -14,3 +15,4 @@ def init():
     kalojaJarvessa = 2200 * jarvi / 100
     ajaKertoja = 20
     kalojenNakokentta = 4
+    kalastajanKarsivallisyys = 10
