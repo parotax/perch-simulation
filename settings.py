@@ -16,9 +16,9 @@ def init():
     kalojaParvessa = 100
     kalojaJarvessa = 1000 * jarvi / 100
     ajaKertoja = 100
+    kalastajanKarsivallisyys = 15
 
     # Muokattavat parametrit alla
     kalojenNakokentta = 4
-    kalastajanKarsivallisyys = 10
     kalojenNopeus = 2
     parvenSade = 5
