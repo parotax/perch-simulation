@@ -10,9 +10,9 @@ def init():
     
     parvet = []
     jarvi = 400
-    testTime = 120
+    testTime = 180
     kalojaParvessa = 125
-    kalojaJarvessa = 2200 * jarvi / 100
-    ajaKertoja = 20
+    kalojaJarvessa = 1000 * jarvi / 100
+    ajaKertoja = 100
     kalojenNakokentta = 4
     kalastajanKarsivallisyys = 10
