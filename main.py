@@ -5,9 +5,9 @@ import settings
 
 settings.init()
 jarvi = 400
-time = 300
-parvienMaara = 10
-kalojaParvessa = 15
+testTime = 120
+kalojaParvessa = 125
+kalaJarvessa = 2200 * jarvi / 100
 ajaKertoja = 25
 
 def printResults(results):
@@ -17,17 +17,24 @@ result = []
 
 for i in range(ajaKertoja):
 
+    kaloja = 0
     jukka = Kalastaja(25, 25, 0)
+    stop = False
 
-    for i in range(parvienMaara):
+    while True:
         kalat = Parvi(randint(20, jarvi - 20), randint(20, jarvi - 20), 0, 5)
 
-        for j in range(kalojaParvessa):
+        for j in range(kalojaParvessa + randint(-75, 75)):
             kalat.lisaa_kala()
+            kaloja += 1
+            if kaloja == kalaJarvessa: 
+                stop = True
+                break
 
         settings.parvet.append(kalat)
+        if stop: break
 
-    for i in range(time):
+    for i in range(testTime):
         for parvi in settings.parvet:
             parvi.liiku()
 
@@ -35,8 +42,9 @@ for i in range(ajaKertoja):
         elif jukka.status == "Kairaa": jukka.kairaa()
         elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
 
-    print(jukka.saalista)
+    print("Saalista:", jukka.saalista)
     result.append(jukka.saalista)
     settings.parvet.clear()
+    print(time.time() - start)
 
 printResults(result)
