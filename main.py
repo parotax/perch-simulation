@@ -14,15 +14,19 @@ def printResults(results):
     print(f"Kalojen määrä järvessä: {int(settings.kalojaJarvessa)}")
     print(f"Kalojen näkökenttä: {settings.kalojenNakokentta}")
     print(f"Toistoja: {settings.ajaKertoja}")
+    print(f"Pilkkimisaika saman reiän äärellä minuutteina: {settings.kalastajanKarsivallisyys}")
     print()
 
     summa = 0
+    nollat = 0
     keskiarvo = sum(results) / len(results)
     print(f"keskiarvo on {keskiarvo}")
     for i in results:
         summa += (i - keskiarvo)**2
+        if i == 0: nollat += 1
     keskihajonta = sqrt(summa / len(results))
     print(f"keskihajonta on {keskihajonta}")
+    print(f"Nollatuloksia: {nollat}")
 
 results = []
 
