@@ -7,7 +7,9 @@ def init():
     global ajaKertoja
     global kalojenNakokentta
     global kalastajanKarsivallisyys
-    
+    global kalojenNopeus
+    global parvenSade
+
     parvet = []
     jarvi = 400
     testTime = 180
@@ -16,3 +18,5 @@ def init():
     ajaKertoja = 100
     kalojenNakokentta = 4
     kalastajanKarsivallisyys = 10
+    kalojenNopeus = 2
+    parvenSade = 5

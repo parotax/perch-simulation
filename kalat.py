@@ -19,7 +19,7 @@ class Kala:
 
 class Parvi:
     id = 1
-    def __init__(self, x, y, suunta, r):
+    def __init__(self, x, y, suunta):
         self.id = Parvi.id
         Parvi.id += 1
         self.x = x
@@ -27,9 +27,9 @@ class Parvi:
         self.paikatX = [self.x]
         self.paikatY = [self.y]
         self.kalat = []
-        self.vauhti = 2
+        self.vauhti = settings.kalojenNopeus
         self.suunta = suunta
-        self.r = r
+        self.r = settings.parvenSade
 
     def lisaa_kala(self):
         alpha = 2 * pi * random.random()
