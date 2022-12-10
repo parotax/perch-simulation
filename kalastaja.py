@@ -3,6 +3,7 @@ from math import sin, cos, sqrt
 import settings
 
 jarvi = 400
+kalojenNakokentta = 4
 
 class Kalastaja:
     def __init__(self, x, y, suunta):
@@ -40,10 +41,12 @@ class Kalastaja:
 
         kalaa = False
         for parvi in settings.parvet:
+            if abs(parvi.x - self.x) < parvi.r + kalojenNakokentta or abs(parvi.x - self.x) < parvi.r + kalojenNakokentta:
+                continue
             for kala in parvi.kalat:
                 x = kala.x + parvi.x
                 y = kala.y + parvi.y
-                if sqrt((x - self.x)**2 + (y - self.y)**2) < 4:
+                if sqrt((x - self.x)**2 + (y - self.y)**2) < kalojenNakokentta:
                     if random.randint(1, 6) == 1:
                         self.saalista += 1
                         parvi.tuhoa(kala.id)
