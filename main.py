@@ -7,6 +7,15 @@ from math import sqrt
 settings.init()
 
 def printResults(results):
+    print("Parametrit")
+    print(f"Järven koko: {settings.jarvi}")
+    print(f"Pilkkimisen kesto minuutteina: {settings.testTime}")
+    print(f"Kalojen määrä parvessa: {settings.kalojaParvessa}")
+    print(f"Kalojen määrä järvessä: {int(settings.kalojaJarvessa)}")
+    print(f"Kalojen näkökenttä: {settings.kalojenNakokentta}")
+    print(f"Toistoja: {settings.ajaKertoja}")
+    print()
+
     summa = 0
     keskiarvo = sum(results) / len(results)
     print(f"keskiarvo on {keskiarvo}")
@@ -32,7 +41,7 @@ for i in range(settings.ajaKertoja):
         for j in range(settings.kalojaParvessa + randint(-75, 75)):
             kalat.lisaa_kala()
             kaloja += 1
-            if kaloja == settings.kalaJarvessa: 
+            if kaloja == settings.kalojaJarvessa: 
                 stop = True
                 break
 
@@ -48,7 +57,7 @@ for i in range(settings.ajaKertoja):
         elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
 
     print("Saalista:", jukka.saalista)
-    result.append(jukka.saalista)
+    results.append(jukka.saalista)
     settings.parvet.clear()
 
 printResults(results)
