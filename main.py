@@ -3,6 +3,7 @@ from kalat import Parvi
 from kalastaja import Kalastaja
 from random import randint
 import settings
+from math import sqrt
 
 settings.init()
 jarvi = 400
@@ -12,9 +13,18 @@ kalojaParvessa = 15
 ajaKertoja = 25
 
 def printResults(results):
-    print(len(results))
+    summa = 0
+    keskiarvo = sum(results) / len(results)
+    print(f"keskiarvo on {keskiarvo}")
+    for i in results:
+        summa += (i - keskiarvo)**2
+    keskihajonta = sqrt(summa / len(results))
+    print(f"keskihajonta on {keskihajonta}")
 
-result = []
+
+
+
+results = []
 
 for i in range(ajaKertoja):
 
@@ -37,6 +47,6 @@ for i in range(ajaKertoja):
         elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
 
     print(jukka.saalista)
-    result.append(jukka.saalista)
+    results.append(jukka.saalista)
 
-printResults(result)
+printResults(results)
