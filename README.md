@@ -1,7 +1,3 @@
 # perch-simulation
 
-Install matplotlib
-
-```console
-pip install matplotlib
-```
+Simulation of ice fishing perches
