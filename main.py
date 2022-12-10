@@ -37,7 +37,7 @@ for i in range(settings.ajaKertoja):
     stop = False
 
     while True:
-        kalat = Parvi(randint(20, settings.jarvi - 20), randint(20, settings.jarvi - 20), 0, 5)
+        kalat = Parvi(randint(20, settings.jarvi - 20), randint(20, settings.jarvi - 20), randint(0, 6))
 
         for j in range(settings.kalojaParvessa + randint(-75, 75)):
             kalat.lisaa_kala()
