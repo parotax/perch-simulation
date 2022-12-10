@@ -15,9 +15,6 @@ def printResults(results):
     keskihajonta = sqrt(summa / len(results))
     print(f"keskihajonta on {keskihajonta}")
 
-
-
-
 results = []
 
 for i in range(settings.ajaKertoja):
@@ -48,7 +45,7 @@ for i in range(settings.ajaKertoja):
         elif jukka.status == "Liikkuu": jukka.vaihda_paikkaa()
 
     print("Saalista:", jukka.saalista)
-    result.append(jukka.saalista)
+    results.append(jukka.saalista)
     settings.parvet.clear()
 
 printResults(results)
