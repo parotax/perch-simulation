@@ -21,4 +21,4 @@ def init():
 
     # Muokattavat parametrit alla
     kalojenNakokentta = 4
-    parvenSade = 5
+    parvenSade = 10
